@@ -1,3 +1,12 @@
+#=
+Simple example of use of montecarlo.jl
+From the system prompt, execute
+mpirun -np X julia pi_mpi.jl
+setting X to the number of ranks you'd
+like to use, subject to  X-1 being an even divisor
+of 1e6, e.g., set X=5.
+=#
+
 include("montecarlo.jl")
 
 function pi_wrapper()

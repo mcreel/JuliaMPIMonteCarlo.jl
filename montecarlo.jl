@@ -12,16 +12,20 @@ function montecarlo(mc_eval::Function, mc_monitor::Function, reps, n_returns, po
     contrib = zeros(pooled, n_returns)
     results = zeros(reps, n_returns)
     pernode = reps / (commsize - 1)
-
-    # check arg
-    if mod(pernode,pooled) != 0
+    if mod(pernode,1) != 0
         if rank == 0
-            println("error \(montecarlo\): pooled must be even divisor of reps/(ranks-1)")
+            println("error \(montecarlo\)")
+            println("reps is set to ", reps)
+            println("choose ranks so that  reps/(ranks-1) is an integer")
         end
         MPI.Barrier(comm)
         MPI.Finalize()
         return 0
     end
+
+    if mod(pernode,pooled) != 0
+        pooled = div(pernode, commsize-1)
+    end    
 
     # workers' code
     if rank > 0
