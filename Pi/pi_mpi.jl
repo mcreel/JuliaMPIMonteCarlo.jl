@@ -7,7 +7,7 @@ like to use, subject to  X-1 being an even divisor
 of 1e6, e.g., set X=5.
 =#
 
-include("montecarlo.jl")
+include(Pkg.dir()"/MPI/examples/montecarlo.jl")
 
 function pi_wrapper()
     pihat = 4.*float((norm(rand(2,1)) .< 1.))

@@ -1,6 +1,6 @@
 include("Auction.jl") # load auction model code
 include("AIS.jl") # the adaptive importance sampling algorithm
-include("montecarlo.jl")
+include(Pkg.dir()"/MPI/examples/montecarlo.jl")
 
 function AuctionWrapper()
     # true theta
