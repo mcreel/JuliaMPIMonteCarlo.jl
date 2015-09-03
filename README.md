@@ -1,2 +1,2 @@
 # JuliaMPIMonteCarlo
-illustrates using Julia and MPI to do Monte Carlo
+Illustrates using Julia and MPI to do Monte Carlo. 
