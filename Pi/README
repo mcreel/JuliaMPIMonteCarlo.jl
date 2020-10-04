@@ -1,1 +1,0 @@
-The MPI version of the pi example is now in the MPI package, in the file https://github.com/JuliaParallel/MPI.jl/blob/master/examples/07-pi-montecarlo.jl
