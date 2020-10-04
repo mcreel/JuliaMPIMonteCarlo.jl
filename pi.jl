@@ -33,9 +33,9 @@ function main()
         MPI.Init()
     end
     comm = MPI.COMM_WORLD
-    reps = Int(1e6)  # desired number of MC reps
+    reps = Int(1e8)  # desired number of MC reps
     nreturns = 1
-    pooled = Int(50000)
+    pooled = Int(1e5)
     montecarlo(pi_wrapper, pi_monitor, comm, reps, nreturns, pooled)
 end
 main()

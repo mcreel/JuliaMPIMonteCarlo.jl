@@ -7,9 +7,6 @@ function montecarlo(mc_eval::Function, mc_monitor::Function,
         batchsize::Integer=1) # transmission size
     rank = MPI.Comm_rank(comm)
     commsize = MPI.Comm_size(comm)
-
-#    @assert commsize > 1
-
     # bookkeeping
     if mod(n_evals, commsize-1) != 0
         if rank == 0
@@ -21,7 +18,6 @@ function montecarlo(mc_eval::Function, mc_monitor::Function,
         exit(1)
     end
     n_pernode = div(n_evals, commsize-1)
-
     # number of evaluations per worker
     if mod(n_pernode, batchsize) != 0
         batchsize = div(n_pernode, commsize-1)
@@ -35,7 +31,6 @@ function montecarlo(mc_eval::Function, mc_monitor::Function,
         MPI.Finalize()
         exit(1)
     end
-
     if rank > 0
         # workers
         contrib = zeros(batchsize, n_returns)
