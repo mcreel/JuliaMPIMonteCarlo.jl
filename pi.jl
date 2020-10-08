@@ -6,8 +6,6 @@ setting X to the number of ranks you'd
 like to use, subject to  X-1 being an even divisor
 of 1e6, e.g., set X=5.
 =#
-using Pkg
-Pkg.activate("./")
 using MPI, Statistics, LinearAlgebra
 include("montecarlo.jl")
 # this is the function that gets Monte Carlo'd
@@ -33,7 +31,7 @@ function main()
         MPI.Init()
     end
     comm = MPI.COMM_WORLD
-    reps = Int(1e8)  # desired number of MC reps
+    reps = Int(1e7)  # desired number of MC reps
     nreturns = 1
     pooled = Int(1e5)
     montecarlo(pi_wrapper, pi_monitor, comm, reps, nreturns, pooled)
