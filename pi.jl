@@ -6,11 +6,13 @@ setting X to the number of ranks you'd
 like to use, subject to  X-1 being an even divisor
 of 1e6, e.g., set X=5.
 =#
+using Pkg
+Pkg.activate(".")
 using MPI, Statistics, LinearAlgebra
 include("montecarlo.jl")
 # this is the function that gets Monte Carlo'd
 function pi_wrapper()
-    pihat = 4.0*float((norm(rand(2,1)) .< 1.))
+    pihat = [4.0*float((norm(rand(2,1)) .< 1.))]
 end
 # this function reports intermediate results during MC runs
 function pi_monitor(sofar, results)

@@ -37,7 +37,7 @@ function montecarlo(mc_eval::Function, mc_monitor::Function,
         @inbounds for i = 1:div(n_pernode, batchsize)
             # do work
             for j = 1:batchsize
-                contrib[j,:] .= mc_eval()
+                contrib[j,:] = mc_eval()
             end
             MPI.Send(contrib, 0, 0, comm)
         end
